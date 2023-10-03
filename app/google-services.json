@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "324620149453",
+    "project_id": "quizapp-fee38",
+    "storage_bucket": "quizapp-fee38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324620149453:android:cacb0b1f08b93851b77f84",
+        "android_client_info": {
+          "package_name": "com.example.quiz_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJwaQuG4khsIQoOiYOUwY2ro_OGjZsDD0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
