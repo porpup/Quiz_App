@@ -44,8 +44,9 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        firebaseAuthAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = firebaseAuthAuth.getCurrentUser();
-        if(currentUser != null) {
+        if (currentUser != null) {
             Intent intent = new Intent(Login.this, ChooseQuiz.class);
             startActivity(intent);
             finish();
@@ -56,21 +57,20 @@ public class Login extends AppCompatActivity {
         String email = this.email.getText().toString().trim();
         String password = this.password.getText().toString().trim();
 
-        if(email.isEmpty() || password.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Enter Email and Password!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        firebaseAuthAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if(task.isSuccessful()) {
-                        Intent intent = new Intent(Login.this, ChooseQuiz.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(this, "Login Failed! Enter correct Email and Password", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        firebaseAuthAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Intent intent = new Intent(Login.this, ChooseQuiz.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Login Failed! Enter correct Email and Password", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
