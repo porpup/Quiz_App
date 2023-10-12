@@ -8,13 +8,19 @@ import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
+
+
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 public class Register extends AppCompatActivity {
   private EditText username, email, password, confirmPassword;
   Button registerBtn;
+  Toolbar toolbar;
   FirebaseDatabase database;
   DatabaseReference reference;
 
@@ -28,9 +34,26 @@ public class Register extends AppCompatActivity {
     password = findViewById(R.id.txtPasswordRegister);
     confirmPassword = findViewById(R.id.txtRepeatPassword);
     registerBtn = findViewById(R.id.btnRegister);
+    toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
+    getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
+    getSupportActionBar().setTitle("Back to Login");
 
     registerBtn.setOnClickListener(view -> registerUser());
 
+  }
+
+
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    Intent intent = new Intent(this, Login.class);
+    startActivity(intent);
+    finish();
+    return true;
   }
 
   public void registerUser() {
