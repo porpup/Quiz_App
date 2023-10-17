@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/purple_gradient" >
+    android:background="@drawable/purple_gradient"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
         android:gravity="center"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <TextView
             android:id="@+id/txtUsernameChooseQuiz"
@@ -25,6 +25,56 @@
             android:textStyle="bold"
             android:text="" />
 
-    </LinearLayout>
+        <!-- Message to instruct the user to choose a category -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:text="@string/choose_your_category"
+            android:layout_marginTop="20dp" />
 
+        <!-- Adding some spacing between the message and the buttons -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <!-- Science Quiz Button -->
+        <Button
+            android:id="@+id/btnScienceQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/science"
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="20dp"
+            android:padding="10dp"
+            android:elevation="5dp"
+            tools:ignore="HardcodedText" />
+
+        <!-- History Quiz Button -->
+        <Button
+            android:id="@+id/btnHistoryQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="History"
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="20dp"
+            android:padding="10dp"
+            android:elevation="5dp"/>
+
+        <!-- Movies Quiz Button -->
+        <Button
+            android:id="@+id/btnMoviesQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Movies"
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"
+            android:padding="10dp"
+            android:elevation="5dp"/>
+
+        <!-- Add more buttons for other quiz categories similarly -->
+    </LinearLayout>
 </LinearLayout>

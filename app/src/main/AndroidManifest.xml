@@ -16,6 +16,10 @@
             android:name=".ChooseQuiz"
             android:exported="false" />
         <activity
+            android:name=".HistoryQuizActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
 
@@ -31,6 +35,7 @@
         <activity
             android:name=".Register"
             android:exported="false"/>
+
     </application>
 
 </manifest>

@@ -58,7 +58,7 @@ public class Register extends AppCompatActivity {
 
   public void registerUser() {
     database = FirebaseDatabase.getInstance();
-    reference = database.getReference("users"); // Name of my table
+    reference = database.getReference("users");
 
     String username = this.username.getText().toString().trim();
     String email = this.email.getText().toString().trim();

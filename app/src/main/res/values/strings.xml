@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Quiz_App</string>
+    <string name="choose_your_category">Choose your Category:</string>
+    <string name="science">Science</string>
 </resources>
