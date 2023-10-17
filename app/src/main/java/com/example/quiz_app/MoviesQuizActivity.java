@@ -1,5 +1,6 @@
 package com.example.quiz_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,11 +19,14 @@ import com.google.firebase.database.ValueEventListener;
 public class MoviesQuizActivity extends AppCompatActivity {
 
     private TextView questionText;
-    private Button optionA, optionB, optionC, optionD, btnNext;
+    private Button optionA, optionB, optionC, optionD, btnNext, btnFinish;
     private String correctAnswer;
-    private int currentQuestionIndex = 0;  // Used to keep track of current question
+    private int currentQuestionIndex = 0;
 
     private DatabaseReference mDatabaseReference;
+
+    private int userScore = 0;
+    private int totalQuestions = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,7 @@ public class MoviesQuizActivity extends AppCompatActivity {
         optionC = findViewById(R.id.optionC);
         optionD = findViewById(R.id.optionD);
         btnNext = findViewById(R.id.btnNext);
+        btnFinish = findViewById(R.id.btnFinish);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("MoviesQuestions");
 
@@ -44,6 +49,7 @@ public class MoviesQuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkAnswer("optionA");
+                disableAnswerButtons();
             }
         });
 
@@ -51,6 +57,7 @@ public class MoviesQuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkAnswer("optionB");
+                disableAnswerButtons();
             }
         });
 
@@ -58,6 +65,7 @@ public class MoviesQuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkAnswer("optionC");
+                disableAnswerButtons();
             }
         });
 
@@ -65,6 +73,7 @@ public class MoviesQuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkAnswer("optionD");
+                disableAnswerButtons();
             }
         });
 
@@ -74,8 +83,16 @@ public class MoviesQuizActivity extends AppCompatActivity {
                 loadNextQuestion();
             }
         });
+        btnFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MoviesQuizActivity.this, ResultActivity.class);
+                intent.putExtra("SCORE", userScore);
+                startActivity(intent);
+                finish();
+            }
+        });
 
-        // Initially, the Next button should be disabled until an answer is selected
         btnNext.setEnabled(false);
     }
 
@@ -87,6 +104,8 @@ public class MoviesQuizActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot questionSnapshot) {
                 if (!questionSnapshot.exists()) {
+                    btnNext.setVisibility(View.GONE);
+                    btnFinish.setVisibility(View.VISIBLE);
                     Toast.makeText(MoviesQuizActivity.this, "No more questions!", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -103,7 +122,7 @@ public class MoviesQuizActivity extends AppCompatActivity {
                 optionB.setText(optB);
                 optionC.setText(optC);
                 optionD.setText(optD);
-                btnNext.setEnabled(false); // Disable until a new answer is selected
+                btnNext.setEnabled(false);
             }
 
             @Override
@@ -111,14 +130,44 @@ public class MoviesQuizActivity extends AppCompatActivity {
                 Toast.makeText(MoviesQuizActivity.this, "Failed to load the next question. Please try again.", Toast.LENGTH_LONG).show();
             }
         });
+
+        mDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                totalQuestions = (int) dataSnapshot.getChildrenCount();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(MoviesQuizActivity.this, "Failed to retrieve total question count.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        optionA.setEnabled(true);
+        optionB.setEnabled(true);
+        optionC.setEnabled(true);
+        optionD.setEnabled(true);
     }
 
     private void checkAnswer(String selectedOption) {
         if (selectedOption.equals(correctAnswer)) {
+            userScore++;
             Toast.makeText(MoviesQuizActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(MoviesQuizActivity.this, "Wrong!", Toast.LENGTH_SHORT).show();
         }
-        btnNext.setEnabled(true); // Enable the Next button
+        if (currentQuestionIndex == totalQuestions) {
+            btnNext.setVisibility(View.GONE);
+            btnFinish.setVisibility(View.VISIBLE);
+        } else {
+            btnNext.setEnabled(true);
+        }
+    }
+
+    private void disableAnswerButtons() {
+        optionA.setEnabled(false);
+        optionB.setEnabled(false);
+        optionC.setEnabled(false);
+        optionD.setEnabled(false);
     }
 }
