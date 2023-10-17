@@ -1,6 +1,7 @@
 package com.example.quiz_app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,14 +20,18 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        userNameTextView = findViewById(R.id.userNameTextView);
+        userNameTextView = findViewById(R.id.userNameTextView); // Assuming you have a TextView in your layout with this ID
         scoreTextView = findViewById(R.id.scoreTextView);
         retryButton = findViewById(R.id.retryButton);
 
-        String username = getIntent().getStringExtra("USERNAME");
-        int score = getIntent().getIntExtra("SCORE", 0);
+        // Retrieve username from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("QuizApp", MODE_PRIVATE);
+        String user = sharedPreferences.getString("username", "User"); // Default to "User" if username not found
 
-        userNameTextView.setText("Username: " + username);
+        // Set the greeting message with the username
+        userNameTextView.setText("Hi " + user + "!");
+
+        int score = getIntent().getIntExtra("SCORE", 0);
         scoreTextView.setText("Your Score: " + score);
 
         retryButton.setOnClickListener(new View.OnClickListener() {
