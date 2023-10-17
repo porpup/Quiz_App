@@ -87,7 +87,7 @@ public class Register extends AppCompatActivity {
     } else {
       Model model = new Model(username, email, password);
       reference.child(username).setValue(model); // Important!
-      Toast.makeText(Register.this, "Successful Registry", Toast.LENGTH_SHORT).show();
+      Toast.makeText(Register.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
       Intent intent = new Intent(Register.this, Login.class);
       intent.putExtra("username", username);
       intent.putExtra("password", password);
