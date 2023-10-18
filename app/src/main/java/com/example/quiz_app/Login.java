@@ -22,6 +22,9 @@ public class Login extends AppCompatActivity {
   Button loginBtn;
   TextView register;
 
+  Button adminLoginBtn;
+
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -31,6 +34,7 @@ public class Login extends AppCompatActivity {
     passwordLogin = findViewById(R.id.txtPasswordLogin);
     loginBtn = findViewById(R.id.btnLogin);
     register = findViewById(R.id.txtRegister);
+    adminLoginBtn = findViewById(R.id.btnAdminLogin);
 
     register.setOnClickListener(view -> {
       Intent intent = new Intent(Login.this, Register.class);
@@ -38,8 +42,14 @@ public class Login extends AppCompatActivity {
       finish();
     });
 
-    loginBtn.setOnClickListener(view -> loginUser());
 
+    adminLoginBtn = findViewById(R.id.btnAdminLogin);
+    adminLoginBtn.setOnClickListener(view -> {
+      Intent intent = new Intent(Login.this, AdminLoginActivity.class);
+      startActivity(intent);
+    });
+
+    loginBtn.setOnClickListener(view -> loginUser());
   }
 
 
@@ -84,4 +94,6 @@ public class Login extends AppCompatActivity {
     });
 
   }
+
+
 }

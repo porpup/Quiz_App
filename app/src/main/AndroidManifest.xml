@@ -28,6 +28,11 @@
         <activity
             android:name=".ResultActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".AdminDashboardActivity"
+            android:exported="false" />
+
         <activity
             android:name=".SplashScreen"
             android:exported="true">
@@ -44,6 +49,9 @@
         <activity
             android:name=".Register"
             android:exported="false"/>
+        <activity
+            android:name=".AdminLoginActivity"
+            android:exported="false" />
 
     </application>
 
