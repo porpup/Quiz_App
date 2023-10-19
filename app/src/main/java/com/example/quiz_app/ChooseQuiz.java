@@ -41,7 +41,7 @@ public class ChooseQuiz extends AppCompatActivity {
 
     // Set the greeting message with the username
     SpannableStringBuilder builder = new SpannableStringBuilder();
-    builder.append("Welcome ");
+    builder.append("Welcome, ");
     int start = builder.length();
     builder.append(user);
     int end = builder.length();

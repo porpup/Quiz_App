@@ -33,6 +33,15 @@
         android:textColor="@android:color/white"
         android:textSize="24sp" />
 
+    <TextView
+        android:id="@+id/bestScoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Your Best: "
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
     <!-- Adding some spacing between the score and the retry button -->
     <Space
         android:layout_width="match_parent"

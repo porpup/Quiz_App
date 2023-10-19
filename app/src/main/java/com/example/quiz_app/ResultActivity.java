@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ResultActivity extends AppCompatActivity {
 
-  private TextView userNameTextView, scoreTextView;
+  private TextView userNameTextView, scoreTextView, bestScoreTextView;
   private Button retryButton, btnLogout;
 
   @Override
@@ -23,6 +25,7 @@ public class ResultActivity extends AppCompatActivity {
 
     userNameTextView = findViewById(R.id.userNameTextView); // Assuming you have a TextView in your layout with this ID
     scoreTextView = findViewById(R.id.scoreTextView);
+    bestScoreTextView = findViewById(R.id.bestScoreTextView);
     retryButton = findViewById(R.id.retryButton);
     btnLogout = findViewById(R.id.btnLogoutResult);
 
@@ -34,8 +37,35 @@ public class ResultActivity extends AppCompatActivity {
     userNameTextView.setText(user);
     userNameTextView.setTextColor(Color.GREEN);
 
+    SpannableStringBuilder builder = new SpannableStringBuilder();
     int score = getIntent().getIntExtra("SCORE", 0);
-    scoreTextView.setText("Your Score: " + score + "pts");
+    builder.append("Your Score: ");
+    int start = builder.length();
+    builder.append(score + "pts");
+    int end = builder.length();
+    builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.yellow)), start, end, 0);
+    scoreTextView.setText(builder);
+
+    // Retrieve and display the best score
+    SpannableStringBuilder builder2 = new SpannableStringBuilder();
+    int bestScore = sharedPreferences.getInt("bestScore", 0);
+    builder2.append("Best Score: ");
+    int start2 = builder2.length();
+    builder2.append(bestScore + "pts");
+    int end2 = builder2.length();
+    builder2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.orange)), start2, end2, 0);
+    bestScoreTextView.setText(builder2);
+
+    // Check if the current score beats the best score
+    if (score > bestScore) {
+      bestScore = score; // Update the best score
+      bestScoreTextView.setText("Best Score: " + bestScore + "pts");
+
+      // Save the new best score in SharedPreferences
+      SharedPreferences.Editor editor = sharedPreferences.edit();
+      editor.putInt("bestScore", bestScore);
+      editor.apply();
+    }
 
     retryButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -50,6 +80,5 @@ public class ResultActivity extends AppCompatActivity {
       Intent logoutIntent = new Intent(ResultActivity.this, Login.class);
       startActivity(logoutIntent);
     });
-
   }
 }

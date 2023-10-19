@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,9 +42,7 @@ public class Register extends AppCompatActivity {
     getSupportActionBar().setTitle("Back to Login");
 
     registerBtn.setOnClickListener(view -> registerUser());
-
   }
-
 
   @Override
   public boolean onSupportNavigateUp() {
@@ -84,8 +81,13 @@ public class Register extends AppCompatActivity {
       Toast.makeText(this, "Please provide a valid email!", Toast.LENGTH_SHORT).show();
       this.email.requestFocus();
     } else {
+      // Create a user model with an initial high score of 0
       Model model = new Model(username, email, password);
-      reference.child(username).setValue(model); // Important!
+      model.setHighScore(0); // Set the initial high score
+
+      // Save the user to the database
+      reference.child(username).setValue(model);
+
       Toast.makeText(Register.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
       Intent intent = new Intent(Register.this, Login.class);
       intent.putExtra("username", username);
@@ -93,6 +95,6 @@ public class Register extends AppCompatActivity {
       startActivity(intent);
       finish();
     }
-
   }
+
 }
