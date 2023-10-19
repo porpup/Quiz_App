@@ -2,7 +2,10 @@ package com.example.quiz_app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -37,7 +40,13 @@ public class ChooseQuiz extends AppCompatActivity {
         }
 
         // Set the greeting message with the username
-        username.setText("Hi " + user + "!");
+        SpannableStringBuilder builder = new SpannableStringBuilder();
+        builder.append("Welcome ");
+        int start = builder.length();
+        builder.append(user);
+        int end = builder.length();
+        builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.green)), start, end, 0);
+        username.setText(builder);
 
         btnScienceQuiz.setOnClickListener(view -> {
             Intent scienceIntent = new Intent(ChooseQuiz.this, ScienceQuizActivity.class);
