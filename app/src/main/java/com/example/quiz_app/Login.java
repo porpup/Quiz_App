@@ -55,9 +55,6 @@ public class Login extends AppCompatActivity {
   }
 
 
-
-
-
   public void loginUser() {
     String username = usernameLogin.getText().toString().trim();
     String userPassword = passwordLogin.getText().toString().trim();
@@ -127,9 +124,9 @@ public class Login extends AppCompatActivity {
     });
   }
 
-    private void clearFields() {
-      usernameLogin.setText("");
-      passwordLogin.setText("");
-    }
+  private void clearFields() {
+    usernameLogin.setText("");
+    passwordLogin.setText("");
+  }
 
 }

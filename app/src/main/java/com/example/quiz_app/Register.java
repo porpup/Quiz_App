@@ -8,8 +8,8 @@ import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.appcompat.widget.Toolbar;
 
+import androidx.appcompat.widget.Toolbar;
 
 
 import com.google.firebase.database.DatabaseReference;
@@ -45,7 +45,6 @@ public class Register extends AppCompatActivity {
     registerBtn.setOnClickListener(view -> registerUser());
 
   }
-
 
 
   @Override
