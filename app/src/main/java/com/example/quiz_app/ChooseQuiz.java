@@ -2,7 +2,6 @@ package com.example.quiz_app;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -13,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ChooseQuiz extends AppCompatActivity {
     TextView username;
-    Button btnScienceQuiz, btnHistoryQuiz, btnMoviesQuiz;
+    Button btnScienceQuiz, btnHistoryQuiz, btnMoviesQuiz, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +23,7 @@ public class ChooseQuiz extends AppCompatActivity {
         btnScienceQuiz = findViewById(R.id.btnScienceQuiz);
         btnHistoryQuiz = findViewById(R.id.btnHistoryQuiz);
         btnMoviesQuiz = findViewById(R.id.btnMoviesQuiz);
+        btnLogout = findViewById(R.id.btnLogoutChooseQuiz);
 
         Intent intent = getIntent();
         String user = intent.getStringExtra("username");
@@ -61,6 +61,11 @@ public class ChooseQuiz extends AppCompatActivity {
         btnMoviesQuiz.setOnClickListener(view -> {
             Intent moviesIntent = new Intent(ChooseQuiz.this, MoviesQuizActivity.class);
             startActivity(moviesIntent);
+        });
+
+        btnLogout.setOnClickListener(view -> {
+            Intent logoutIntent = new Intent(ChooseQuiz.this, Login.class);
+            startActivity(logoutIntent);
         });
     }
 }

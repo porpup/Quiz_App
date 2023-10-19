@@ -5,72 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/purple_gradient"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <LinearLayout
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="40dp"
+      android:gravity="center"
+      android:orientation="vertical"
+      tools:ignore="UselessParent">
+
+    <TextView
+        android:id="@+id/txtUsernameChooseQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textColor="@android:color/white"
+        android:textSize="45sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/choose_your_category"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <!-- Science Quiz Button -->
+    <Button
+        android:id="@+id/btnScienceQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:ignore="UselessParent">
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:padding="10dp"
+        android:text="@string/science"
+        android:textColor="@android:color/holo_orange_light" />
 
-        <TextView
-            android:id="@+id/txtUsernameChooseQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Welcome"
-            android:textColor="@android:color/white"
-            android:textSize="45sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/btnHistoryQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:padding="10dp"
+        android:text="History"
+        android:textColor="@android:color/holo_orange_light" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:text="@string/choose_your_category"
-            android:layout_marginTop="20dp" />
+    <Button
+        android:id="@+id/btnMoviesQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:padding="10dp"
+        android:text="Movies"
+        android:textColor="@android:color/holo_orange_light" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+  </LinearLayout>
 
-        <!-- Science Quiz Button -->
-        <Button
-            android:id="@+id/btnScienceQuiz"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/science"
-            android:background="@android:color/white"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="20dp"
-            android:padding="10dp"
-            android:elevation="5dp"
-            tools:ignore="HardcodedText" />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginBottom="80dp"
+      android:gravity="bottom">
 
-        <Button
-            android:id="@+id/btnHistoryQuiz"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="History"
-            android:background="@android:color/white"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="20dp"
-            android:padding="10dp"
-            android:elevation="5dp"/>
+    <Button
+        android:id="@+id/btnLogoutChooseQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:text="Logout" />
 
+  </LinearLayout>
 
-        <Button
-            android:id="@+id/btnMoviesQuiz"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Movies"
-            android:background="@android:color/white"
-            android:textColor="@android:color/black"
-            android:padding="10dp"
-            android:elevation="5dp"/>
-
-
-    </LinearLayout>
 </LinearLayout>
