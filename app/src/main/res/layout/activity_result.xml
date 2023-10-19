@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        android:text="Hi User!"
+        android:text="User"
         android:textSize="42sp"
         android:textStyle="bold" />
 
@@ -44,6 +44,21 @@
         android:layout_height="wrap_content"
         android:text="Retry Quiz"
         android:textColor="@android:color/white" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginBottom="80dp"
+      android:gravity="bottom">
+
+    <Button
+        android:id="@+id/btnLogoutResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:text="Logout" />
 
   </LinearLayout>
 

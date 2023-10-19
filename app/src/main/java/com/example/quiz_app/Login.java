@@ -43,8 +43,14 @@ public class Login extends AppCompatActivity {
     });
 
     loginBtn.setOnClickListener((View.OnClickListener) v -> {
-      validateAdminCredentials();
-      loginUser();
+      String username = usernameLogin.getText().toString().trim();
+      if ("pargol".equals(username)) {
+        // If the username is "pargol", call validateAdminCredentials()
+        validateAdminCredentials();
+      } else {
+        // If it's any other username, call loginUser()
+        loginUser();
+      }
     });
   }
 

@@ -1,92 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/purple_gradient"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+
+      android:layout_marginTop="40dp"
+      android:layout_marginRight="40dp"
+      android:layout_marginLeft="40dp"
+      android:gravity="center"
+      android:orientation="vertical"
+      android:padding="16dp">
+
+    <EditText
+        android:id="@+id/questionEditText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="Enter your Question here"
+        android:minHeight="48dp" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/adminDashboardToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/purple"
-            app:titleTextColor="@android:color/white" />
+    <EditText
+        android:id="@+id/optionAEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Option A"
+        android:minHeight="48dp" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    <EditText
+        android:id="@+id/optionBEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Option B"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/optionCEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Option C"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/optionDEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter Option D"
+        android:minHeight="48dp" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginBottom="40dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/questionEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Question"
-            android:minHeight="48dp" />
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="20dp"
+          android:minHeight="48dp"
+          android:text="Correct Answer:"
+          android:textColor="@android:color/white" />
 
-        <EditText
-            android:id="@+id/optionAEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Option A"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/optionBEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Option B"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/optionCEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Option C"
-            android:minHeight="48dp" />
-
-        <EditText
-            android:id="@+id/optionDEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Option D"
-            android:minHeight="48dp" />
-
-        <Spinner
-            android:id="@+id/correctAnswerSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:entries="@array/answers_array"
-            android:minHeight="48dp" />
-
-        <Spinner
-            android:id="@+id/categorySpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:entries="@array/categories_array"
-            android:minHeight="48dp" />
-
-        <Button
-            android:id="@+id/addNewQuestionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add New Question"
-            android:textSize="18sp"
-            android:layout_marginTop="40dp" />
-
+      <Spinner
+          android:id="@+id/correctAnswerSpinner"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="20dp"
+          android:entries="@array/answers_array"
+          android:minHeight="48dp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="20dp"
+          android:minHeight="48dp"
+          android:text="Category:"
+          android:textColor="@android:color/white" />
+
+      <Spinner
+          android:id="@+id/categorySpinner"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="60dp"
+          android:layout_marginTop="20dp"
+          android:layout_marginRight="20dp"
+          android:entries="@array/categories_array"
+          android:minHeight="48dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addNewQuestionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Add New Question"
+        android:textSize="18sp" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:gravity="center">
+
+    <Button
+        android:id="@+id/btnLogoutAdminDashboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:text="Logout" />
+
+  </LinearLayout>
+
 </LinearLayout>

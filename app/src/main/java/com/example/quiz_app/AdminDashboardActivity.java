@@ -15,27 +15,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 public class AdminDashboardActivity extends AppCompatActivity {
-    private EditText questionEditText;
-    private EditText optionAEditText;
-    private EditText optionBEditText;
-    private EditText optionCEditText;
-    private EditText optionDEditText;
-    private Spinner correctAnswerSpinner;
-    private Spinner categorySpinner;
+    private EditText questionEditText, optionAEditText, optionBEditText, optionCEditText, optionDEditText;
+    private Spinner correctAnswerSpinner, categorySpinner;
     private DatabaseReference mDatabaseReference;
+    Button addNewQuestionButton, btnLogout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
 
-        Toolbar toolbar = findViewById(R.id.adminDashboardToolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.adminDashboardToolbar);
+//        setSupportActionBar(toolbar);
 
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
-        getSupportActionBar().setTitle("Back to Login");
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+//
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
+//        getSupportActionBar().setTitle("Back to Login");
 
         questionEditText = findViewById(R.id.questionEditText);
         optionAEditText = findViewById(R.id.optionAEditText);
@@ -44,7 +40,8 @@ public class AdminDashboardActivity extends AppCompatActivity {
         optionDEditText = findViewById(R.id.optionDEditText);
         correctAnswerSpinner = findViewById(R.id.correctAnswerSpinner);
         categorySpinner = findViewById(R.id.categorySpinner);
-        Button addNewQuestionButton = findViewById(R.id.addNewQuestionButton);
+        addNewQuestionButton = findViewById(R.id.addNewQuestionButton);
+        btnLogout = findViewById(R.id.btnLogoutAdminDashboard);
 
         mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -64,7 +61,17 @@ public class AdminDashboardActivity extends AppCompatActivity {
             Toast.makeText(AdminDashboardActivity.this, "Question added successfully!", Toast.LENGTH_SHORT).show();
             clearFields();
         });
+
+        btnLogout.setOnClickListener(view -> {
+            Intent logoutIntent = new Intent(AdminDashboardActivity.this, Login.class);
+            startActivity(logoutIntent);
+        });
     }
+
+
+
+
+
     @Override
     public boolean onSupportNavigateUp() {
         Intent intent = new Intent(this, Login.class);
@@ -72,7 +79,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
         finish();
         return true;
     }
-
 
     private void clearFields() {
         questionEditText.setText("");
