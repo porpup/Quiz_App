@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,108 +7,105 @@
     android:background="@drawable/purple_gradient"
     android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginHorizontal="40dp"
+      android:layout_marginBottom="40dp"
+      android:gravity="center"
+      android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/splash" />
+
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:text="Question will be displayed here."
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="gone" />
+
+    <!-- Option A -->
+    <Button
+        android:id="@+id/optionA"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Option A"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="18sp"
+        tools:ignore="VisualLintButtonSize" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarScienceQuiz"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/purple"
-            app:titleTextColor="@android:color/white" />
+    <!-- Option B -->
+    <Button
+        android:id="@+id/optionB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Option B"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="18sp"
+        tools:ignore="VisualLintButtonSize" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    <!-- Option C -->
+    <Button
+        android:id="@+id/optionC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Option C"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="18sp"
+        tools:ignore="VisualLintButtonSize" />
+
+    <!-- Option D -->
+    <Button
+        android:id="@+id/optionD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Option D"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="18sp"
+        tools:ignore="VisualLintButtonSize" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginBottom="40dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/splash" />
+      <!-- A button to go to the next question -->
+      <Button
+          android:id="@+id/btnFinish"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="30dp"
+          android:text="Finish"
+          android:textSize="20sp"
+          tools:ignore="VisualLintButtonSize" />
 
-        <TextView
-            android:id="@+id/questionText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/white"
-            android:padding="10dp"
-            android:text="Question will be displayed here."
-            android:textSize="18sp" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:visibility="gone" />
-
-        <!-- Option A -->
-        <Button
-            android:id="@+id/optionA"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Option A"
-            android:textSize="18sp"
-            tools:ignore="VisualLintButtonSize" />
-
-        <!-- Option B -->
-        <Button
-            android:id="@+id/optionB"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Option B"
-            android:textSize="18sp"
-            tools:ignore="VisualLintButtonSize" />
-
-        <!-- Option C -->
-        <Button
-            android:id="@+id/optionC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Option C"
-            android:textSize="18sp"
-            tools:ignore="VisualLintButtonSize" />
-
-        <!-- Option D -->
-        <Button
-            android:id="@+id/optionD"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Option D"
-            android:textSize="18sp"
-            tools:ignore="VisualLintButtonSize" />
-
-        <!-- A button to go to the next question -->
-        <Button
-            android:id="@+id/btnNext"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="40dp"
-            android:text="Next"
-            android:textSize="20sp"
-            tools:ignore="VisualLintButtonSize" />
-
-        <Button
-            android:id="@+id/btnFinish"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="40dp"
-            android:text="Finish"
-            android:textSize="20sp"
-            android:visibility="gone"
-            tools:ignore="VisualLintButtonSize" />
-
+      <Button
+          android:id="@+id/btnNext"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_margin="30dp"
+          android:text="Next"
+          android:textSize="20sp"
+          tools:ignore="VisualLintButtonSize" />
     </LinearLayout>
+
+  </LinearLayout>
+
 </LinearLayout>
