@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "324620149453",
-    "project_id": "quizapp-fee38",
-    "storage_bucket": "quizapp-fee38.appspot.com"
+    "project_number": "504989806953",
+    "firebase_url": "https://quizapp-930db-default-rtdb.firebaseio.com",
+    "project_id": "quizapp-930db",
+    "storage_bucket": "quizapp-930db.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:324620149453:android:cacb0b1f08b93851b77f84",
+        "mobilesdk_app_id": "1:504989806953:android:a624efa5b90e318a484df8",
         "android_client_info": {
           "package_name": "com.example.quiz_app"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDJwaQuG4khsIQoOiYOUwY2ro_OGjZsDD0"
+          "current_key": "AIzaSyCpBlwB1DxyVuFLx4XOAJpf9P9DFRacw_A"
         }
       ],
       "services": {

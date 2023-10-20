@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ public class Login extends AppCompatActivity {
   private EditText usernameLogin, passwordLogin;
   Button loginBtn;
   TextView register;
+  private DatabaseReference mDatabaseReference;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +34,25 @@ public class Login extends AppCompatActivity {
     loginBtn = findViewById(R.id.btnLogin);
     register = findViewById(R.id.txtRegister);
 
+    mDatabaseReference = FirebaseDatabase.getInstance().getReference("admin");
+
     register.setOnClickListener(view -> {
       Intent intent = new Intent(Login.this, Register.class);
       startActivity(intent);
       finish();
     });
 
-    loginBtn.setOnClickListener(view -> loginUser());
-
+    loginBtn.setOnClickListener((View.OnClickListener) v -> {
+      String username = usernameLogin.getText().toString().trim();
+      if ("pargol".equals(username)) {
+        // If the username is "pargol", call validateAdminCredentials()
+        validateAdminCredentials();
+      } else {
+        // If it's any other username, call loginUser()
+        loginUser();
+      }
+    });
   }
-
 
 
   public void loginUser() {
@@ -79,9 +90,43 @@ public class Login extends AppCompatActivity {
 
       @Override
       public void onCancelled(@NonNull DatabaseError error) {
-
       }
     });
 
   }
+
+  private void validateAdminCredentials() {
+    final String inputUsername = usernameLogin.getText().toString().trim();
+    final String inputPassword = passwordLogin.getText().toString().trim();
+
+    mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+      @Override
+      public void onDataChange(DataSnapshot dataSnapshot) {
+        String adminUsername = dataSnapshot.child("username").getValue(String.class);
+        String storedHashedPassword = dataSnapshot.child("password").getValue(String.class);
+
+        if (inputUsername.equals(adminUsername) && inputPassword.equals(storedHashedPassword)) {
+          Toast.makeText(Login.this, "Login successful!", Toast.LENGTH_SHORT).show();
+
+          Intent intent = new Intent(Login.this, AdminDashboardActivity.class);
+          startActivity(intent);
+          finish();
+          clearFields();
+        } else {
+          Toast.makeText(Login.this, "Invalid credentials!", Toast.LENGTH_SHORT).show();
+        }
+      }
+
+      @Override
+      public void onCancelled(DatabaseError databaseError) {
+        Toast.makeText(Login.this, "Error checking credentials!", Toast.LENGTH_SHORT).show();
+      }
+    });
+  }
+
+  private void clearFields() {
+    usernameLogin.setText("");
+    passwordLogin.setText("");
+  }
+
 }

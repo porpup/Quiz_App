@@ -1,30 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/purple_gradient" >
+    android:background="@drawable/purple_gradient"
+    android:orientation="vertical">
 
-    <LinearLayout
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="40dp"
+      android:gravity="center"
+      android:orientation="vertical"
+      tools:ignore="UselessParent">
+
+    <TextView
+        android:id="@+id/txtUsernameChooseQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome"
+        android:textColor="@android:color/white"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/choose_your_category"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <!-- Science Quiz Button -->
+    <Button
+        android:id="@+id/btnScienceQuiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        android:gravity="center"
-        android:orientation="vertical" >
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:padding="10dp"
+        android:text="@string/science"
+        android:textColor="@android:color/holo_orange_light" />
 
-        <TextView
-            android:id="@+id/txtUsernameChooseQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:textSize="45sp"
-            android:textStyle="bold"
-            android:text="" />
+    <Button
+        android:id="@+id/btnHistoryQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:padding="10dp"
+        android:text="History"
+        android:textColor="@android:color/holo_orange_light" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnMoviesQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:elevation="5dp"
+        android:padding="10dp"
+        android:text="Movies"
+        android:textColor="@android:color/holo_orange_light"
+        tools:ignore="HardcodedText" />
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginBottom="60dp"
+      android:gravity="bottom">
+
+    <Button
+        android:id="@+id/btnLogoutChooseQuiz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="100dp"
+        android:text="Logout"
+        tools:ignore="HardcodedText" />
+
+  </LinearLayout>
 
 </LinearLayout>
