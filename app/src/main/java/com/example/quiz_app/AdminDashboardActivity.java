@@ -20,21 +20,12 @@ public class AdminDashboardActivity extends AppCompatActivity {
   private EditText questionEditText, optionAEditText, optionBEditText, optionCEditText, optionDEditText;
   private Spinner correctAnswerSpinner, categorySpinner;
   private DatabaseReference mDatabaseReference;
-  Button addNewQuestionButton, btnLogout;
+  Button addNewQuestionButton, btnLogout, btnUsers;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_admin_dashboard);
-
-//        Toolbar toolbar = findViewById(R.id.adminDashboardToolbar);
-//        setSupportActionBar(toolbar);
-
-//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-//
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
-//        getSupportActionBar().setTitle("Back to Login");
 
     questionEditText = findViewById(R.id.questionEditText);
     optionAEditText = findViewById(R.id.optionAEditText);
@@ -45,6 +36,7 @@ public class AdminDashboardActivity extends AppCompatActivity {
     categorySpinner = findViewById(R.id.categorySpinner);
     addNewQuestionButton = findViewById(R.id.addNewQuestionButton);
     btnLogout = findViewById(R.id.btnLogoutAdminDashboard);
+    btnUsers = findViewById(R.id.btnUsers);
 
     mDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -74,6 +66,11 @@ public class AdminDashboardActivity extends AppCompatActivity {
     btnLogout.setOnClickListener(view -> {
       Intent logoutIntent = new Intent(AdminDashboardActivity.this, Login.class);
       startActivity(logoutIntent);
+    });
+
+    btnUsers.setOnClickListener(view -> {
+      Intent usersIntent = new Intent(AdminDashboardActivity.this, AdminUsersActivity.class);
+      startActivity(usersIntent);
     });
   }
 

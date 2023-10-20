@@ -1,18 +1,18 @@
 <resources>
-    <string name="app_name">Quiz_App</string>
-    <string name="choose_your_category">Choose your Category:</string>
-    <string name="science">Science</string>
-    <string-array name="answers_array">
-        <item>optionA</item>
-        <item>optionB</item>
-        <item>optionC</item>
-        <item>optionD</item>
-    </string-array>
+  <string name="app_name">Quiz_App</string>
+  <string name="choose_your_category">Choose your Category:</string>
+  <string name="science">Science</string>
+  <string-array name="answers_array">
+    <item>optionA</item>
+    <item>optionB</item>
+    <item>optionC</item>
+    <item>optionD</item>
+  </string-array>
 
-    <string-array name="categories_array">
-        <item>History</item>
-        <item>Science</item>
-        <item>Movies</item>
-    </string-array>
+  <string-array name="categories_array">
+    <item>History</item>
+    <item>Science</item>
+    <item>Movies</item>
+  </string-array>
 
 </resources>

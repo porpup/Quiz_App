@@ -13,6 +13,9 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class ResultActivity extends AppCompatActivity {
 
   private TextView userNameTextView, scoreTextView, bestScoreTextView;
@@ -48,23 +51,27 @@ public class ResultActivity extends AppCompatActivity {
 
     // Retrieve and display the best score
     SpannableStringBuilder builder2 = new SpannableStringBuilder();
-    int bestScore = sharedPreferences.getInt("bestScore", 0);
-    builder2.append("Best Score: ");
+    int highScore = sharedPreferences.getInt("highScore", 0);
+    builder2.append("High Score: ");
     int start2 = builder2.length();
-    builder2.append(bestScore + "pts");
+    builder2.append(highScore + "pts");
     int end2 = builder2.length();
     builder2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.orange)), start2, end2, 0);
     bestScoreTextView.setText(builder2);
 
     // Check if the current score beats the best score
-    if (score > bestScore) {
-      bestScore = score; // Update the best score
-      bestScoreTextView.setText("Best Score: " + bestScore + "pts");
+    if (score > highScore) {
+      highScore = score; // Update the best score
+      bestScoreTextView.setText("High Score: " + highScore + "pts");
 
       // Save the new best score in SharedPreferences
       SharedPreferences.Editor editor = sharedPreferences.edit();
-      editor.putInt("bestScore", bestScore);
+      editor.putInt("highScore", highScore);
       editor.apply();
+
+      // Update the high score in the Realtime Database
+      DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(user);
+      databaseReference.child("highScore").setValue(highScore);
     }
 
     retryButton.setOnClickListener(new View.OnClickListener() {

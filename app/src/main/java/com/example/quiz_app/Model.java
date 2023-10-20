@@ -4,13 +4,13 @@ public class Model {
   private String username;
   private String email;
   private String password;
-  private int highScore; // Add a field for high score
+  private int highScore;
 
   public Model(String username, String email, String password) {
     this.username = username;
     this.email = email;
     this.password = password;
-    this.highScore = 0; // Initialize the high score to 0 during user creation
+    this.highScore = 0;
   }
 
   public String getUsername() {

@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:text="Welcome"
         android:textColor="@android:color/white"
-        android:textSize="45sp"
+        android:textSize="34sp"
         android:textStyle="bold" />
 
     <TextView
