@@ -59,21 +59,26 @@ public class AdminUsersActivity extends AppCompatActivity {
   }
 
   private void listAllUsers() {
-    // Create an ArrayList to store user names
-    final ArrayList<String> userList = new ArrayList<>();
+    // Create an ArrayList to store User objects
+    final ArrayList<Model> userList = new ArrayList<>();
 
     reference.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(DataSnapshot dataSnapshot) {
         for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
           String username = userSnapshot.child("username").getValue(String.class);
-          if (username != null) {
-            userList.add(username);
+          String email = userSnapshot.child("email").getValue(String.class);
+          String password = userSnapshot.child("password").getValue(String.class);
+          int highScore = userSnapshot.child("highScore").getValue(Integer.class);
+          if (username != null && email != null && password != null) {
+            Model userModel = new Model(username, email, password);
+            userModel.setHighScore(highScore);
+            userList.add(userModel);
           }
         }
 
-        // Create a custom adapter to display the user names in the ListView
-        CustomArrayAdapter adapter = new CustomArrayAdapter(AdminUsersActivity.this, android.R.layout.simple_list_item_1, userList);
+        // Create a custom adapter to display the user names, emails, passwords, and high scores in the ListView
+        CustomArrayAdapter adapter = new CustomArrayAdapter(AdminUsersActivity.this, R.layout.custom_list_item, userList);
         userListView.setAdapter(adapter);
       }
 
@@ -83,5 +88,7 @@ public class AdminUsersActivity extends AppCompatActivity {
       }
     });
   }
+
+
 
 }
