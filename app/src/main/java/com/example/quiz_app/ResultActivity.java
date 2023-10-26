@@ -26,7 +26,8 @@ public class ResultActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_result);
 
-    userNameTextView = findViewById(R.id.userNameTextView); // Assuming you have a TextView in your layout with this ID
+    // Initialize views
+    userNameTextView = findViewById(R.id.userNameTextView);
     scoreTextView = findViewById(R.id.scoreTextView);
     bestScoreTextView = findViewById(R.id.bestScoreTextView);
     retryButton = findViewById(R.id.retryButton);
@@ -40,24 +41,27 @@ public class ResultActivity extends AppCompatActivity {
     userNameTextView.setText(user);
     userNameTextView.setTextColor(Color.GREEN);
 
-    SpannableStringBuilder builder = new SpannableStringBuilder();
+    // Get the user's current score from the Intent
     int score = getIntent().getIntExtra("SCORE", 0);
-    builder.append("Your Score: ");
-    int start = builder.length();
-    builder.append(score + "pts");
-    int end = builder.length();
-    builder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.yellow)), start, end, 0);
-    scoreTextView.setText(builder);
+
+    // Display the user's score
+    SpannableStringBuilder scoreBuilder = new SpannableStringBuilder();
+    scoreBuilder.append("Your Score: ");
+    int start = scoreBuilder.length();
+    scoreBuilder.append(score + "pts");
+    int end = scoreBuilder.length();
+    scoreBuilder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.yellow)), start, end, 0);
+    scoreTextView.setText(scoreBuilder);
 
     // Retrieve and display the best score
-    SpannableStringBuilder builder2 = new SpannableStringBuilder();
     int highScore = sharedPreferences.getInt("highScore", 0);
-    builder2.append("High Score: ");
-    int start2 = builder2.length();
-    builder2.append(highScore + "pts");
-    int end2 = builder2.length();
-    builder2.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.orange)), start2, end2, 0);
-    bestScoreTextView.setText(builder2);
+    SpannableStringBuilder bestScoreBuilder = new SpannableStringBuilder();
+    bestScoreBuilder.append("High Score: ");
+    int start2 = bestScoreBuilder.length();
+    bestScoreBuilder.append(highScore + "pts");
+    int end2 = bestScoreBuilder.length();
+    bestScoreBuilder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.orange)), start2, end2, 0);
+    bestScoreTextView.setText(bestScoreBuilder);
 
     // Check if the current score beats the best score
     if (score > highScore) {
@@ -74,6 +78,7 @@ public class ResultActivity extends AppCompatActivity {
       databaseReference.child("highScore").setValue(highScore);
     }
 
+    // Set up retry button
     retryButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -83,9 +88,21 @@ public class ResultActivity extends AppCompatActivity {
       }
     });
 
+    // Set up logout button
     btnLogout.setOnClickListener(view -> {
+      // Clear SharedPreferences data when logging out
+      clearSharedPreferences();
+
       Intent logoutIntent = new Intent(ResultActivity.this, Login.class);
       startActivity(logoutIntent);
     });
+  }
+
+  // Function to clear SharedPreferences data
+  private void clearSharedPreferences() {
+    SharedPreferences sharedPreferences = getSharedPreferences("QuizApp", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.clear();
+    editor.apply();
   }
 }
