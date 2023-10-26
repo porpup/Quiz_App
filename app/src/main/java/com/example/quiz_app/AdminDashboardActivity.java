@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -55,12 +56,42 @@ public class AdminDashboardActivity extends AppCompatActivity {
       String correctAnswer = correctAnswerSpinner.getSelectedItem().toString();
       String category = categorySpinner.getSelectedItem().toString();
 
-      Question newQuestion = new Question(question, optionA, optionB, optionC, optionD, correctAnswer);
+      // Generate the question number
+      final int[] questionNumber = {6};  // Start with 6
+      DatabaseReference categoryRef = mDatabaseReference.child(category + "Questions");
 
-      mDatabaseReference.child(category + "Questions").push().setValue(newQuestion);
+      // Find the last question number in the category
+      categoryRef.get().addOnCompleteListener(task -> {
+        if (task.isSuccessful()) {
+          DataSnapshot snapshot = task.getResult();
+          if (snapshot.exists()) {
+            for (DataSnapshot child : snapshot.getChildren()) {
+              // Parse the question key to extract the number
+              String questionKey = child.getKey();
+              if (questionKey != null) {
+                try {
+                  int parsedQuestionNumber = Integer.parseInt(questionKey.substring(1));
+                  if (parsedQuestionNumber >= questionNumber[0]) {
+                    questionNumber[0] = parsedQuestionNumber + 1;
+                  }
+                } catch (NumberFormatException e) {
+                  e.printStackTrace();
+                }
+              }
+            }
+          }
 
-      Toast.makeText(AdminDashboardActivity.this, "Question added successfully!", Toast.LENGTH_SHORT).show();
-      clearFields();
+          // Create the new question with the updated question number
+          String questionKey = "Q" + questionNumber[0];
+          Question newQuestion = new Question(question, optionA, optionB, optionC, optionD, correctAnswer);
+
+          // Save the new question in the category
+          categoryRef.child(questionKey).setValue(newQuestion);
+
+          Toast.makeText(AdminDashboardActivity.this, "Question added successfully!", Toast.LENGTH_SHORT).show();
+          clearFields();
+        }
+      });
     });
 
     btnLogout.setOnClickListener(view -> {
@@ -73,7 +104,6 @@ public class AdminDashboardActivity extends AppCompatActivity {
       startActivity(usersIntent);
     });
   }
-
 
   @Override
   public boolean onSupportNavigateUp() {
