@@ -1,4 +1,4 @@
-# Quiz App for Android Mobile
+# Android Mobile Quiz App
 The Quiz Application for Android is an interactive and user-friendly app designed to provide a dynamic quizzing experience for users with diverse interests. Utilizing the robust Firebase Realtime Database, it offers real-time synchronization and storage of quiz data, ensuring that users have access to the most current questions and score rankings.
 
 Administrators have the flexibility to enhance the quiz database by adding new questions to existing categories and reviewing the high scores of all users to foster competitive spirit.
