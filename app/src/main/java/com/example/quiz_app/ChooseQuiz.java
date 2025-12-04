@@ -64,8 +64,19 @@ public class ChooseQuiz extends AppCompatActivity {
     });
 
     btnLogout.setOnClickListener(view -> {
+      // Clear SharedPreferences data when logging out
+      clearSharedPreferences();
+
       Intent logoutIntent = new Intent(ChooseQuiz.this, Login.class);
       startActivity(logoutIntent);
     });
+  }
+
+  // Function to clear SharedPreferences data
+  private void clearSharedPreferences() {
+    SharedPreferences sharedPreferences = getSharedPreferences("QuizApp", MODE_PRIVATE);
+    SharedPreferences.Editor editor = sharedPreferences.edit();
+    editor.clear();
+    editor.apply();
   }
 }
